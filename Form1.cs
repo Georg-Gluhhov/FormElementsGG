@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+
 
 namespace FormElementsGG
 {
@@ -16,6 +20,7 @@ namespace FormElementsGG
         Button btn;
         Label lbl;
         PictureBox img;
+        TabControl tabC;
         public Form1()
         {
             this.Height = 600;
@@ -36,8 +41,8 @@ namespace FormElementsGG
             tn.Nodes.Add(new TreeNode("Tekstkast-TextBox"));
             tn.Nodes.Add(new TreeNode("PictureBox"));
 
-            tn.Nodes.Add(new TreeNode("Kaart-TabControl"));
-            tn.Nodes.Add(new TreeNode("MessageBox"));
+            tn.Nodes.Add(new TreeNode("MessageBox"));    
+            tn.Nodes.Add(new TreeNode("Kaart"));
 
             //nupp
             btn = new Button();
@@ -122,7 +127,55 @@ namespace FormElementsGG
             else if (e.Node.Text == "PictureBox")
             {
                 this.Controls.Add(img);
+            }           
+            else if (e.Node.Text == "Kaart")
+            {
+                tabC = new TabControl();
+                tabC.Location = new Point(450, 50);
+                tabC.Size = new Size(300, 200);
+                TabPage tabP1 = new TabPage("Esimene");
+                WebBrowser wb = new WebBrowser();
+                wb.Url = new Uri("https://www.tthk.ee/");
+                tabP1.Controls.Add(wb);
+                TabPage tabP2 = new TabPage("Teine");
+                WebBrowser wb2 = new WebBrowser();
+                wb2.Url = new Uri("https://www.tthk.ee/");
+                tabP2.Controls.Add(wb2);
+                TabPage tabP3 = new TabPage("Kolmas");
+                tabC.DoubleClick += TabP3_DoubleClick;
+                tabC.MouseWheel += TabC_MouseWheel;
+
+                tabC.Controls.Add(tabP1);
+                tabC.Controls.Add(tabP2);
+                tabC.Controls.Add(tabP3);
+                this.Controls.Add(tabC);
+
+
+            }            
+            else if (e.Node.Text == "Radionupp")
+            {
+                this.Controls.Add(img);
             }
+
+        }
+
+
+        private void TabC_MouseWheel(object sender, MouseEventArgs e)
+        {
+            this.tabC.TabPages.Remove(tabC.SelectedTab);
+        }
+
+
+        private void TabP3_DoubleClick(object sender, EventArgs e)
+        {
+            string title = "tabP" + (tabC.TabCount + 1).ToString();
+            TabPage tb = new TabPage(title);
+            tabC.TabPages.Add(tb);
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }
