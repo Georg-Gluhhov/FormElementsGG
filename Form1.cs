@@ -21,6 +21,9 @@ namespace FormElementsGG
         Label lbl;
         PictureBox img;
         TabControl tabC;
+        CheckBox cb1, cb2, cb3, cb4;
+        TextBox txb;
+        RadioButton rb, rb2;
         public Form1()
         {
             this.Height = 600;
@@ -51,6 +54,13 @@ namespace FormElementsGG
             btn.Height = 30;
             btn.Width = 100;
             btn.Click += Btn_Click;
+
+            //textbox
+            txb = new TextBox();
+            txb.Location = new Point(450,400);
+            txb.Height = 10;
+            txb.Width = 100;
+
             //pealrikiri
             lbl = new Label();
             lbl.Text="Elementide loomine c# abil";
@@ -58,12 +68,39 @@ namespace FormElementsGG
             lbl.Location = new Point(150, 0);
             lbl.MouseHover += Lbl_MouseHover;
             lbl.MouseLeave += Lbl_MouseLeave;
+
             //image
             img = new PictureBox();
             img.Image = Image.FromFile(@"..\..\img\picbox.png");
             img.Location = new Point(150, 150);
-            img.Size = new Size(350, 300);
+            img.Size = new Size(150, 150);
             img.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            //checkbox
+            cb1 = new CheckBox();
+            cb2 = new CheckBox();
+            cb3 = new CheckBox();
+            cb4 = new CheckBox();
+
+            cb1.Text = "Blue";
+            cb1.Location = new Point(500, 70);
+
+            cb2.Text = "Red";
+            cb2.Location = new Point(500, 50);
+
+            cb3.Text = "Green";
+            cb3.Location = new Point(500, 30);
+
+            cb4.Text = "White";
+            cb4.Location = new Point(500, 90);
+
+            cb1.MouseClick += Cb1_MouseClick;
+            cb2.MouseClick += Cb2_MouseClick;
+            cb3.MouseClick += Cb3_MouseClick;
+            cb4.MouseClick += Cb4_MouseClick;
+
+
+
             //carusel 
             img.DoubleClick += Img_DoubleClick;
 
@@ -109,9 +146,9 @@ namespace FormElementsGG
 
         private void Btn_Click(object sender, EventArgs e)
         {
+            this.Height = this.Height + 10;
+            this.Width = this.Width + 10;
 
-
-            this.BackColor = this.BackColor = Color.FromArgb(255, 232, 232);
         }
 
         private void Tree_AfterSelect(object sender, TreeViewEventArgs e)
@@ -131,7 +168,7 @@ namespace FormElementsGG
             else if (e.Node.Text == "Kaart")
             {
                 tabC = new TabControl();
-                tabC.Location = new Point(450, 50);
+                tabC.Location = new Point(450, 150);
                 tabC.Size = new Size(300, 200);
                 TabPage tabP1 = new TabPage("Esimene");
                 WebBrowser wb = new WebBrowser();
@@ -156,6 +193,18 @@ namespace FormElementsGG
             {
                 this.Controls.Add(img);
             }
+            else if (e.Node.Text == "Markeruut-CheckBox")
+            {
+                this.Controls.Add(cb4);
+                this.Controls.Add(cb3);
+                this.Controls.Add(cb2);
+                this.Controls.Add(cb1);
+            }
+            else if (e.Node.Text == "Tekstkast-TextBox")
+            {
+                this.Controls.Add(txb);
+            }
+
 
         }
 
@@ -172,6 +221,25 @@ namespace FormElementsGG
             TabPage tb = new TabPage(title);
             tabC.TabPages.Add(tb);
 
+        }
+
+         private void Cb1_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.BackColor = this.BackColor = Color.FromArgb(0, 0, 255);
+            
+        }
+         private void Cb2_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+            this.BackColor = this.BackColor = Color.FromArgb(255, 0, 0);
+        }
+         private void Cb3_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.BackColor = this.BackColor = Color.FromArgb(0, 255, 0);     
+        }
+         private void Cb4_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.BackColor = this.BackColor = Color.FromArgb(255, 255, 255);       
         }
 
         private void Form1_Load(object sender, EventArgs e)

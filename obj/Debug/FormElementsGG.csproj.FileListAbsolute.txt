@@ -8,3 +8,13 @@ C:\Users\opilane\Source\Repos\FormElementsGG2\bin\Debug\FormElementsGG.pdb
 C:\Users\opilane\Source\Repos\FormElementsGG2\obj\Debug\FormElementsGG.Form1.resources
 C:\Users\opilane\Source\Repos\FormElementsGG2\obj\Debug\FormElementsGG.exe
 C:\Users\opilane\Source\Repos\FormElementsGG2\obj\Debug\FormElementsGG.pdb
+C:\Users\Mrwoodu\Source\Repos\FormElementsGG4\obj\Debug\FormElementsGG.csprojAssemblyReference.cache
+C:\Users\Mrwoodu\Source\Repos\FormElementsGG4\obj\Debug\FormElementsGG.Form1.resources
+C:\Users\Mrwoodu\Source\Repos\FormElementsGG4\obj\Debug\FormElementsGG.Properties.Resources.resources
+C:\Users\Mrwoodu\Source\Repos\FormElementsGG4\obj\Debug\FormElementsGG.csproj.GenerateResource.cache
+C:\Users\Mrwoodu\Source\Repos\FormElementsGG4\obj\Debug\FormElementsGG.csproj.CoreCompileInputs.cache
+C:\Users\Mrwoodu\Source\Repos\FormElementsGG4\obj\Debug\FormElementsGG.exe
+C:\Users\Mrwoodu\Source\Repos\FormElementsGG4\obj\Debug\FormElementsGG.pdb
+C:\Users\Mrwoodu\Source\Repos\FormElementsGG4\bin\Debug\FormElementsGG.exe.config
+C:\Users\Mrwoodu\Source\Repos\FormElementsGG4\bin\Debug\FormElementsGG.exe
+C:\Users\Mrwoodu\Source\Repos\FormElementsGG4\bin\Debug\FormElementsGG.pdb
