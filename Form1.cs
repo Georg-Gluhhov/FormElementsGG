@@ -24,6 +24,8 @@ namespace FormElementsGG
         CheckBox cb1, cb2, cb3, cb4;
         TextBox txb;
         RadioButton rb, rb2;
+        DataGridView dgv;
+        MainMenu mm;
         public Form1()
         {
             this.Height = 600;
@@ -43,9 +45,10 @@ namespace FormElementsGG
 
             tn.Nodes.Add(new TreeNode("Tekstkast-TextBox"));
             tn.Nodes.Add(new TreeNode("PictureBox"));
-
-            tn.Nodes.Add(new TreeNode("MessageBox"));    
+ 
             tn.Nodes.Add(new TreeNode("Kaart"));
+            tn.Nodes.Add(new TreeNode("MainMenu"));
+            tn.Nodes.Add(new TreeNode("DataGridView"));
 
             //nupp
             btn = new Button();
@@ -98,6 +101,31 @@ namespace FormElementsGG
             cb2.MouseClick += Cb2_MouseClick;
             cb3.MouseClick += Cb3_MouseClick;
             cb4.MouseClick += Cb4_MouseClick;
+            //MainMenu
+            mm = new MainMenu();
+            MenuItem menuFile = new MenuItem("File");
+            menuFile.MenuItems.Add("Exit", new EventHandler(menuFile_Exit_Select));
+            menuFile.MenuItems.Add("Big screen", new EventHandler(menuFiles_Exit_Select));
+            menuFile.MenuItems.Add("Small screen", new EventHandler(menuFiless_Exit_Select));
+            mm.MenuItems.Add(menuFile);
+            //radiobutton
+            rb = new RadioButton();
+            rb2 = new RadioButton();
+            rb.Location = new Point(600, 70);
+            rb2.Location = new Point(600, 40);
+            rb.Text = "Red";
+            rb2.Text = "Gray";
+            rb.CheckedChanged += new EventHandler(rbt_Checked);
+            rb2.CheckedChanged += new EventHandler(rbt_Checked);
+            //DataGridView
+            dgv = new DataGridView();
+            DataSet ds = new DataSet("XML Fail. Menüü");
+            ds.ReadXml("../../xml/xmlexp.xml");
+            dgv.Location = new Point(500, 450);
+            dgv.Size = new Size(200, 200);
+            dgv.AutoGenerateColumns = true;
+            dgv.DataSource = ds;
+            dgv.DataMember = "note";
 
 
 
@@ -133,7 +161,16 @@ namespace FormElementsGG
             }
 
         }
+        void menuFile_Exit_Select(object sender, System.EventArgs e)
+        {
+            this.Close();
+        }
+        void menuFiles_Exit_Select(object sender, System.EventArgs e)
+        {
 
+            this.Size = new Size(1000, 1000);
+
+        }
         private void Lbl_MouseLeave(object sender, EventArgs e)
         {
             lbl.BackColor = Color.Transparent;
@@ -150,7 +187,21 @@ namespace FormElementsGG
             this.Width = this.Width + 10;
 
         }
-
+        private void rbt_Checked(object sender, EventArgs e)
+        {
+            if (rb2.Checked)
+            {
+                tree.BackColor = Color.Gray; 
+            }
+            else if (rb.Checked)
+            {
+                tree.BackColor = Color.Red; 
+            }
+        }
+        void menuFiless_Exit_Select(object sender, System.EventArgs e)
+        {
+            this.Size = new Size(800, 500);
+        }
         private void Tree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Text=="Nupp")
@@ -164,7 +215,16 @@ namespace FormElementsGG
             else if (e.Node.Text == "PictureBox")
             {
                 this.Controls.Add(img);
-            }           
+            }               
+            else if (e.Node.Text == "Radionupp-Radiobutton") 
+            { 
+                this.Controls.Add(rb);
+                this.Controls.Add(rb2);
+            }
+            else if (e.Node.Text == "DataGridView")
+            {
+                this.Controls.Add(dgv);
+            }
             else if (e.Node.Text == "Kaart")
             {
                 tabC = new TabControl();
@@ -203,6 +263,11 @@ namespace FormElementsGG
             else if (e.Node.Text == "Tekstkast-TextBox")
             {
                 this.Controls.Add(txb);
+            }
+            else if (e.Node.Text == "MainMenu")
+            {
+
+                this.Menu = mm;
             }
 
 
